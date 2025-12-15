@@ -1,5 +1,5 @@
 import React from 'react'
-import CategoryDetail from '../components/CategoryDetail'
+import CategoryDetail from '../components/Rawwi'
 
 const page = () => {
   return (

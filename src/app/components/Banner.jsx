@@ -1,19 +1,22 @@
 "use client";
+import { Router } from "next/router";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { FaSearch } from "react-icons/fa";
+  import { useRouter } from 'next/navigation';  
 
 const Banner = () => {
   const { t, i18n } = useTranslation();
   const isEnglish = i18n.language === "ar"; 
+const router = useRouter();
+const tabs = [
+  { label: "ال بحث بالموضوعات", path: "/search/topics" },
+  { label: "البحث بالرواة", path: "/rawwi" },
+  { label: "البحث بالمصادر", path: "/masdar" },
+  { label: "الرقم العالمي", path: "/RaqamUlAli" },
+  { label: "البحث بالعبارة", path: "/search/phrase" },
+];
 
-  const tabs = [
-    "ال بحث بالموضوعات",
-    "البحث بالرواة",
-    "البحث بالمصادر",
-    "الرقم العالمي",
-    "البحث بالعبارة",
-  ];
 
   return (
     <section
@@ -77,15 +80,16 @@ const Banner = () => {
 
         {/* Tabs */}
         <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 mb-4 md:mb-6">
-          {tabs.map((tab, key) => (
-            <button
-              key={key}
-              className={`px-2 sm:px-5 py-1 sm:py-1 text-black font-bold rounded-md border shadow-md hover:bg-[#206D69] hover:text-white transition ${isEnglish ? "text-xs sm:text-sm" : "text-sm sm:text-base"
-                }`}
-            >
-              {t(`${tab}`)}
-            </button>
-          ))}
+         {tabs.map((tab, key) => (
+  <button
+    key={key}
+    onClick={() => router.push(tab.path)}
+    className="px-2 sm:px-5 py-1 text-black font-bold rounded-md border shadow-md hover:bg-[#206D69] hover:text-white transition"
+  >
+    {t(tab.label)}
+  </button>
+))}
+
         </div>
 
         {/* Search Bar */}

@@ -4,65 +4,57 @@ import axios from "axios";
 // AXIOS INSTANCE
 // ===============================
 const api = axios.create({
-  baseURL: "https://YOUR_BACKEND_URL/api", // <-- Apna API base URL daalna
+  baseURL: process.env.NEXT_PUBLIC_LOCAL_ENV,
   timeout: 15000,
+  //  headers: {
+  //   "accept-language": "ar", // ✅ Header add kar diya
+  // },
 });
-
-// ===============================
-// REQUEST INTERCEPTOR (token auto add)
-// ===============================
-api.interceptors.request.use(
-  (config) => {
-    const token = localStorage.getItem("token"); // token from login
-
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-
-    return config;
-  },
-  (error) => Promise.reject(error)
-);
-
-// ===============================
-// RESPONSE INTERCEPTOR
-// ===============================
-api.interceptors.response.use(
-  (response) => response,
-  (error) => {
-    // Backend validation error
-    if (error.response && error.response.status === 422) {
-      console.error("Validation Error:", error.response.data);
-    }
-
-    
-    if (error.response && error.response.status === 401) {
-      localStorage.removeItem("token");
-      console.error("Session Expired! Login again.");
-    }
-
-    return Promise.reject(error);
-  }
-);
 
 // ===============================
 // READY-TO-USE API FUNCTIONS
 // ===============================
 
-// Login
-export const loginUser = (data) => api.post("/login", data);
+// ✅ Masdar List (GET)
+export const getMasdarList = async () => {
+  try {
+    const res = await api.get(
+      "/website/name-of-references/for-select"
+    );
+    return res.data;
+  } catch (error) {
+    console.error("Masdar fetch error:", error);
+    return [];
+  }
+};
 
-// Get all packages
-export const getPackages = () => api.get("/packages");
+export const getRawwiList = async () => {
+  try {
+    const res = await api.get(
+      "/website/ravis/for-select"
+    );
+    return res.data?.data || [];
+  } catch (error) {
+    console.error("Masdar fetch error:", error);
+    return [];
+  }
+};
 
-// Get single package
-export const getPackageById = (id) => api.get(`/packages/${id}`);
+export const getRaqamUlAli = async () => {
+  try {
+    const res = await api.get(
+      "/website/title-of-the-hadiths/for-select"
+    );
+    return res.data?.data || [];
+  } catch (error) {
+    console.error("Masdar fetch error:", error);
+    return [];
+  }
+};
 
-// Book a package
-export const bookPackage = (data) => api.post("/book-package", data);
 
-// Get user bookings
-export const getUserBookings = (id) => api.get(`/user-bookings/${id}`);
 
-// Export axios instance
+// ===============================
+// EXPORT INSTANCE
+// ===============================
 export default api;

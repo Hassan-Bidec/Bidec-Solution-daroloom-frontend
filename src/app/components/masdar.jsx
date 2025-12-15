@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FaBook, FaChevronDown, FaLink, FaSearch } from "react-icons/fa";
 
-const rawwi = ({ items }) => {
+const KitabulIman = ({ items }) => {
   // dropdown states ab use nahi ho rahe (future ke liye)
   // const [showList1, setShowList1] = useState(false);
   // const [showList2, setShowList2] = useState(false);
@@ -135,9 +135,9 @@ const rawwi = ({ items }) => {
           {/* Accordion Items (Paginated) */}
 <div className="space-y-2">
   {currentItems.map((item, i) => (
-    <div key={item.ravi_code || i} className="bg-white rounded-md shadow-sm">
+    <div key={item.Book_Code || i} className="bg-white rounded-md shadow-sm">
       <div className="flex justify-end items-center p-3 cursor-pointer gap-2" >
-        {t(item.ravi_name || "Unknown Book")}
+        {t(item.Nick_Name || "Unknown Book")}
         <FaBook className="text-white text-xl bg-[#206D69] w-10 h-10 p-2 " />
         
       </div>
@@ -179,4 +179,4 @@ const rawwi = ({ items }) => {
   );
 };
 
-export default rawwi;
+export default KitabulIman;
