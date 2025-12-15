@@ -55,7 +55,7 @@ const tabs = [
 
 
       {/* Floating Box */}
-      <div className="relative md:-bottom-20 w-full max-w-[720px] bg-white md:h-[260px] rounded-xl shadow-2xl flex flex-col items-center justify-center z-10  md:p-6">
+      <div className="relative md:-bottom-20 w-full max-w-[720px]  bg-white md:h-[260px] rounded-xl shadow-2xl flex flex-col items-center justify-center z-10  md:p-6">
         {/* Left Top Corner Small Image */}
         <img
           src="/leftimg.png"
@@ -79,12 +79,12 @@ const tabs = [
         </h1>
 
         {/* Tabs */}
-        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 mb-4 md:mb-6">
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-3  md:gap-4 mb-4 md:mb-6">
          {tabs.map((tab, key) => (
   <button
     key={key}
     onClick={() => router.push(tab.path)}
-    className="px-2 sm:px-5 py-1 text-black font-bold rounded-md border shadow-md hover:bg-[#206D69] hover:text-white transition"
+    className="px-2 sm:px-5 py-1 text-black  cursor-pointer font-bold rounded-md border shadow-md hover:bg-[#206D69] hover:text-white transition"
   >
     {t(tab.label)}
   </button>
@@ -93,16 +93,16 @@ const tabs = [
         </div>
 
         {/* Search Bar */}
-        <div className="flex flex-col md:flex-row items-center w-full md:w-[80%] max-w-[90%] border border-gray-800 rounded-md px-2 py-2 md:py-1 shadow-md gap-2 md:gap-0">
-          <button className="flex items-center justify-center gap-2 px-5 py-2 md:py-1 text-white bg-[#206D69] font-bold rounded-md border border-[#206D69] shadow-md hover:bg-[#1a5a56] transition w-full md:w-auto">
+        <div className="flex flex-col md:flex-row items-center  w-full md:w-[100%] max-w-[110%] border border-gray-800 rounded-md px-2 py-2 md:py-1 shadow-md gap-2 md:gap-0">
+          <button className="flex items-center justify-center cursor-pointer gap-2 px-5 py-2 md:py-1 text-white bg-[#206D69] font-bold rounded-md border border-[#206D69] shadow-md hover:bg-[#1a5a56] transition w-full md:w-auto">
             <span>{t("بحث")}</span>
-            <FaSearch className="text-white text-lg" />
+            <FaSearch className="text-white text-lg cursor-pointer" />
           </button>
 
           <input
             type="text"
             placeholder={t("ابحث بعبارة (الأعمال بالنيات) أو (إنما الأعمال)")}
-            className={`flex-grow bg-transparent outline-none text-right px-3 text-gray-800 placeholder-gray-600 w-full md:w-auto ${isEnglish ? "text-sm" : "text-base"
+            className={`flex-grow bg-transparent outline-none text-right px-3  text-gray-800 placeholder-gray-600 w-full md:w-auto ${isEnglish ? "text-sm" : "text-base"
               }`}
           />
         </div>
