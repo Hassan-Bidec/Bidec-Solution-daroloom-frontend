@@ -167,7 +167,7 @@ const sampleData = [
 export default function Lists({ data = sampleData }) {
   const [openBooks, setOpenBooks] = useState(new Set());
   const [openChapters, setOpenChapters] = useState({});
-  const tabs = ["البحث بالرواة", "البحث بالمصادر", "الرقم العالمي", "البحث بالعبارة"];
+  const tabs = ["البحث بالمصادر", "الرقم العالمي", "البحث بالعبارة"];
 
   const toggleBook = (idx) => {
     const newSet = new Set(openBooks);
@@ -190,27 +190,37 @@ export default function Lists({ data = sampleData }) {
       {/* 🔹 Tabs & Search */}
       <div className="w-full flex flex-col items-center mt-10 space-y-8 px-4 sm:px-6 md:px-0">
         {/* Tabs */}
-        <div className="flex flex-wrap justify-center gap-3">
-          {tabs.map((tab, key) => (
-            <button
-              key={key}
-              className="px-6 sm:px-8 md:px-12 py-2 text-black font-bold rounded-md border border-gray-400 shadow-sm hover:bg-[#206D69] hover:text-white transition-all duration-200"
-            >
-              {tab}
-            </button>
-          ))}
-        </div>
-
+     
+     
+      <div className="w-full pr-15">
+      {/* 🔹 Tabs Row */}
+      <div className="flex flex-wrap justify-end  gap-2 sm:gap-3">
+        {tabs.map((tab, key) => (
+          <button
+            key={key}
+            className="px-6 sm:px-8 md:px-12 py-2 text-black font-bold  rounded-md border border-gray-400 shadow-sm 
+            hover:bg-[#206D69] z-20 cursor-pointer 
+ hover:text-white transition-all duration-200 text-sm sm:text-base"
+          >
+            {tab}
+          </button>
+        ))}
+      </div>
+</div>
         {/* Search */}
-        <div className="flex flex-row items-center w-full sm:w-[80%] md:w-[57%] max-w-4xl bg-white border border-gray-800 rounded-md px-3 py-2 shadow-md gap-2">
-          <button className="flex items-center gap-2 px-4 sm:px-6 py-2 text-white bg-[#206D69] font-bold rounded-md border border-[#206D69] shadow-md hover:bg-[#1a5a56] transition">
+    <div className="flex flex-col sm:flex-row items-center w-full sm:w-[80%] md:w-[70%] lg:w-[57%] max-w-4xl bg-white border border-gray-800 rounded-md px-3 py-2 shadow-md sm:ml-0 lg:ml-[32%] gap-2 sm:gap-4">
+          <button
+            
+            className="flex items-center justify-center gap-2 px-5 sm:px-6 py-2 text-white bg-[#206D69] font-bold rounded-md border border-[#206D69] shadow-md hover:bg-[#1a5a56] transition w-full sm:w-auto"
+          >
             <span>بحث</span>
             <FaSearch className="text-white text-lg" />
           </button>
+  
           <input
             type="text"
             placeholder="ابحث بعبارة (الأعمال بالنيات) أو (إنما الأعمال)"
-            className="flex-grow bg-transparent outline-none text-right px-4 text-gray-800 placeholder-gray-600 py-2 rounded-md"
+            className="flex-grow bg-transparent outline-none text-right px-2 sm:px-4 text-gray-800 placeholder-gray-600 w-full sm:w-auto"
           />
         </div>
 

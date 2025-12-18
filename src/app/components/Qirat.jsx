@@ -226,7 +226,7 @@ export default function Qirat() {
 
         </div>
 
-        <div className="text-center mb-12">
+        <div className="text-center mb-12 mt-20">
           <div className="flex justify-center mb-7">
             <img
               src="/headingimg.png"
@@ -234,26 +234,30 @@ export default function Qirat() {
               className="w-30 mt-5"
             />
           </div>
-          <h2 className="text-3xl font-bold text-gray-800 mb-2">
+          <h2 className="text-5xl font-bold  text-gray-800 mb-2">
             {t("قِرَاءَةُ الْمُدَوَّنَةِ")}
           </h2>
           {/* <div className="w-16 h-1 bg-teal-700 mx-auto rounded-full"></div> */}
         </div>
 
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4 rtl text-right mt-16">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4 rtl text-right mt-10">
       <div className="relative max-w-sm mx-auto
-  border px-15 border-teal-600 rounded-xl p-6
+  border border-teal-600 rounded-xl p-6 w-200 h-30
   flex flex-row-reverse items-center gap-4 
-  lg:block lg:text-center lg:border-none lg:p-0">
+  lg:block lg:text-center lg:border-none  lg:p-0">
 
   {/* NUMBER */}
-  <div className="flex-shrink-0
-    bg-teal-700 text-white w-18 h-18 rounded-full
-    flex items-center justify-center font-bold  
-    lg:mx-auto lg:mb-3">
-    1
-  </div>
+<div className="flex-shrink-0
+  bg-gradient-to-b 
+from-[rgb(6,118,123)] to-[rgb(40,150,155)]
+  text-white w-14 h-14 rounded-full
+  flex items-center justify-center font-bold  
+  lg:mx-auto lg:mb-3">
+  1
+</div>
+
+
 
   {/* CONTENT */}
   <div className="flex-1">
@@ -278,15 +282,17 @@ export default function Qirat() {
 
         {/* CARD 2 */}
         <div className="relative max-w-sm mx-auto
-  border border-teal-600 rounded-xl p-4
+  border border-teal-600 rounded-xl p-4 w-200 h-30
   flex flex-row-reverse items-center gap-4
   lg:block lg:text-center lg:border-none lg:p-0">
 
           {/* NUMBER */}
-          <div className="flex-shrink-0
-    bg-teal-700 text-white w-18 h-18 rounded-full
-    flex items-center justify-center font-bold
-    lg:mx-auto lg:mb-3">
+<div className="flex-shrink-0
+  bg-gradient-to-b 
+from-[rgb(6,118,123)] to-[rgb(40,150,155)]
+  text-white w-14 h-14 rounded-full 
+  flex items-center justify-center font-bold  
+  lg:mx-auto lg:mb-3">
             2
           </div>
           <div className="flex-1">
@@ -308,15 +314,17 @@ export default function Qirat() {
 
         {/* CARD 3 */}
               <div className="relative max-w-sm mx-auto
-  border px-7 border-teal-600 rounded-xl p-6
+  border border-teal-600 rounded-xl p-6 w-200 h-30
   flex flex-row-reverse items-center gap-4
   lg:block lg:text-center lg:border-none lg:p-0">
 
           {/* NUMBER */}
-                <div className="flex-shrink-0
-    bg-teal-700 text-white w-18 h-18 rounded-full
-    flex items-center justify-center font-bold
-    lg:mx-auto lg:mb-3">
+<div className="flex-shrink-0
+  bg-gradient-to-b 
+from-[rgb(6,118,123)] to-[rgb(40,150,155)]
+  text-white w-14 h-14 rounded-full
+  flex items-center justify-center font-bold  
+  lg:mx-auto lg:mb-3">
             3
           </div>
           <div className="flex-1">

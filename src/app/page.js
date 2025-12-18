@@ -11,6 +11,9 @@ import RaqamUlAli from "./components/RaqamUlAli";
 import Lists from "./components/Lists";
 import Rawwi from "./components/Rawwi";
 import KitabulIman from "./components/masdar";
+// import KitabulIman from "./components/masdar";
+import SDVS from "./components/sdvs";
+
 
 export default function Home() {
   return (
@@ -21,12 +24,13 @@ export default function Home() {
       <div className="px-1">
 
         <FeaturesSection />
-        <Rawwi />
-        <Faqs />
-        <KitabulIman/>
-        <MasterBook />
-        <RaqamUlAli />
-        <Lists />
+        {/* <Rawwi /> */}
+        {/* <Faqs /> */}
+        {/* <KitabulIman/> */}
+        {/* <MasterBook /> */}
+{/* <RaqamUlAli /> */}
+        {/* <Lists /> */}
+        {/* <SDVS/> */}
       </div>
     </>
   );

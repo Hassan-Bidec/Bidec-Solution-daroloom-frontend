@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FaBook, FaChevronDown, FaLink, FaSearch } from "react-icons/fa";
 
-const KitabulIman = ({ items }) => {
+const rawwi = ({ items }) => {
   // dropdown states ab use nahi ho rahe (future ke liye)
   // const [showList1, setShowList1] = useState(false);
   // const [showList2, setShowList2] = useState(false);
@@ -11,8 +11,21 @@ const KitabulIman = ({ items }) => {
   const [openIndex, setOpenIndex] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 20;
-   const { t } = useTranslation();
-   
+  const { t } = useTranslation();
+
+
+  const [open1, setOpen1] = useState(false);
+  const [value1, setValue1] = useState("");
+ const [open2, setOpen2] = useState(false);
+  const [value2, setValue2] = useState("");
+
+
+  const narrators = [
+    "امام بخاری",
+    "امام مسلم",
+    "امام ترمذی",
+    "امام نسائی",
+  ];
 
 
   useEffect(() => {
@@ -40,12 +53,12 @@ const KitabulIman = ({ items }) => {
   return (
     <div className="min-h-screen bg-white">
       {/* 🔹 Tabs Section */}
-      <div className="text-center w-[95%] mx-auto">
-        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 py-3">
+      <div className="text-center w-[95%] mx-auto ">
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 py-3 ">
           {btn.map((item, key) => (
             <button
               key={key}
-              className="text-black px-6 py-1 rounded-md hover:text-white cursor-pointer hover:bg-[#0C6251] border border-[#0C6251] transition text-sm sm:text-base"
+              className="text-black px-6 py-1 rounded-md transition z-20 cursor-pointer hover:text-white cursor-pointer hover:bg-[#0C6251] border border-[#0C6251] transition text-sm sm:text-base"
             >
               {item}
             </button>
@@ -54,38 +67,127 @@ const KitabulIman = ({ items }) => {
       </div>
 
       {/* 🔹 Divider */}
-      <div className="w-full sm:w-[90%] mx-auto bg-[#206D69] py-1 px-2 rounded-md"></div>
+      <div className="w-full sm:w-[90%] mx-auto bg-[#206D69] py-1 px-2 rounded-md "></div>
 
       {/* 🔹 Search Section */}
       <div className="w-full flex flex-col md:flex-row items-center justify-between gap-3 md:gap-6 px-4 sm:px-8 md:px-10 py-4">
         {/* Left Search Bars */}
-        <div className="flex flex-col sm:flex-row gap-2 w-full md:w-1/2 justify-end">
+        <div className="flex flex-col sm:flex-row gap-2 w-full md:w-1/2 justify-end transition z-20 cursor-pointer">
+
+       
+
           {/* Search 1 */}
-          <div className="relative flex items-center border rounded-md px-2 py-1 bg-white w-full sm:w-1/2">
-            <div className="flex items-center gap-1 border-r border-gray-400 pr-2">
-              <FaChevronDown className="text-[#0C6251] text-xs cursor-not-allowed" />
+          <div className="relative w-full sm:w-1/2 ">
+            <div className="flex items-center border rounded-md px-2 py-1 bg-white">
+
+              {/* Chevron (dropdown trigger) */}
+              <div
+                className="flex items-center gap-1 border-r border-gray-400 pr-2 "
+                onClick={() => setOpen1(!open1)}
+              >
+                <FaChevronDown className="text-[#0C6251] text-xs" />
+              </div>
+
+              {/* Input (typing allowed) */}
+              <input
+                type="text"
+                value={value1}
+                onChange={(e) => setValue1(e.target.value)}
+                placeholder="بحسب الراوي"
+                className="flex-grow text-right text-sm bg-transparent outline-none px-1"
+              />
+
+              {/* Search icon (no dropdown) */}
+              <FaSearch
+                className="text-[#0C6251] text-sm ml-1 cursor-pointer"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  console.log("Search value:", value1);
+                }}
+              />
             </div>
-            <input
-              type="text"
-              placeholder="بحسب الراوي"
-              className="flex-grow text-right text-sm bg-transparent outline-none px-1"
-            />
-            <FaSearch className="text-[#0C6251] text-sm ml-1" />
+
+            {/* Dropdown */}
+            {open1 && (
+              <div className="absolute top-full right-0 mt-1 w-full bg-white border rounded-md shadow-md z-10">
+                {narrators
+                  .filter((name) =>
+                    name.toLowerCase().includes(value1.toLowerCase())
+                  )
+                  .map((name, index) => (
+                    <div
+                      key={index}
+                      className="px-3 py-2 text-sm text-right hover:bg-gray-100 cursor-pointer"
+                      onClick={() => {
+                        setValue1(name);
+                        setOpen1(false);
+                      }}
+                    >
+                      {name}
+                    </div>
+                  ))}
+              </div>
+            )}
           </div>
 
-          {/* Search 2 */}
-          <div className="relative flex items-center border rounded-md px-2 py-1 bg-white w-full sm:w-1/2">
-            <div className="flex items-center gap-1 border-r border-gray-400 pr-2">
-              <FaChevronDown className="text-[#0C6251] text-xs cursor-not-allowed" />
+
+
+          {/* Search 2 (same logic, different data) */}
+          <div className="relative w-full sm:w-1/2">
+            <div className="flex items-center border rounded-md px-2 py-1 bg-white">
+
+              {/* Chevron (dropdown trigger) */}
+              <div
+                className="flex items-center gap-1 border-r border-gray-400 pr-2 cursor-pointer"
+                onClick={() => setOpen2(!open2)}
+              >
+                <FaChevronDown className="text-[#0C6251] text-xs" />
+              </div>
+
+              {/* Input (typing allowed) */}
+              <input
+                type="text"
+                value={value2}
+                onChange={(e) => setValue2(e.target.value)}
+                placeholder="بحسب الموضوع"
+                className="flex-grow text-right text-sm bg-transparent outline-none px-1"
+              />
+
+              {/* Search icon (no dropdown) */}
+              <FaSearch
+                className="text-[#0C6251] text-sm ml-1 cursor-pointer"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  console.log("Search value:", value2);
+                }}
+              />
             </div>
-            <input
-              type="text"
-              placeholder="بحسب الموضوع"
-              className="flex-grow text-right text-sm bg-transparent outline-none px-1"
-            />
-            <FaSearch className="text-[#0C6251] text-sm ml-1" />
+
+            {/* Dropdown */}
+            {open2 && (
+              <div className="absolute top-full right-0 mt-1 w-full bg-white border rounded-md shadow-md z-10">
+                {narrators
+                  .filter((name) =>
+                    name.toLowerCase().includes(value2.toLowerCase())
+                  )
+                  .map((name, index) => (
+                    <div
+                      key={index}
+                      className="px-3 py-2 text-sm text-right hover:bg-gray-100 cursor-pointer"
+                      onClick={() => {
+                        setValue2(name);
+                        setOpen2(false);
+                      }}
+                    >
+                      {name}
+                    </div>
+                  ))}
+              </div>
+            )}
           </div>
+
         </div>
+
 
         {/* Right Text */}
         <div className="w-full md:w-1/2 text-right text-sm text-black">
@@ -133,17 +235,17 @@ const KitabulIman = ({ items }) => {
 
           {/* Accordion Items (Paginated) */}
           {/* Accordion Items (Paginated) */}
-<div className="space-y-2">
-  {currentItems.map((item, i) => (
-    <div key={item.Book_Code || i} className="bg-white rounded-md shadow-sm">
-      <div className="flex justify-end items-center p-3 cursor-pointer gap-2" >
-        {t(item.Nick_Name || "Unknown Book")}
-        <FaBook className="text-white text-xl bg-[#206D69] w-10 h-10 p-2 " />
-        
-      </div>
-    </div>
-  ))}
-</div>
+          <div className="space-y-2">
+            {currentItems.map((item, i) => (
+              <div key={item.ravi_code || i} className="bg-white rounded-md shadow-sm">
+                <div className="flex justify-end items-center p-3 cursor-pointer gap-2" >
+                  {t(item.ravi_name || "Unknown Book")}
+                  <FaBook className="text-white text-xl bg-[#206D69] w-10 h-10 p-2 " />
+
+                </div>
+              </div>
+            ))}
+          </div>
 
 
           {/* Pagination Controls */}
@@ -151,22 +253,20 @@ const KitabulIman = ({ items }) => {
             <button
               onClick={goToPrev}
               disabled={currentPage === 1}
-              className={`px-4 py-1 rounded-md ${
-                currentPage === 1
+              className={`px-4 py-1 rounded-md ${currentPage === 1
                   ? "bg-gray-300 cursor-not-allowed"
                   : "bg-[#206D69] text-white hover:bg-[#1a5a56]"
-              }`}
+                }`}
             >
               Previous
             </button>
             <button
               onClick={goToNext}
               disabled={currentPage === totalPages}
-              className={`px-4 py-1 rounded-md ${
-                currentPage === totalPages
+              className={`px-4 py-1 rounded-md ${currentPage === totalPages
                   ? "bg-gray-300 cursor-not-allowed"
                   : "bg-[#206D69] text-white hover:bg-[#1a5a56]"
-              }`}
+                }`}
             >
               Next
             </button>
@@ -179,4 +279,4 @@ const KitabulIman = ({ items }) => {
   );
 };
 
-export default KitabulIman;
+export default rawwi;

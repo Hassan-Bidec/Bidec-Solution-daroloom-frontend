@@ -6,13 +6,16 @@ export default function FeaturesSection() {
   return (
     <div className="relative bg-white py-16 px-4 sm:px-6 md:px-12 lg:px-20 text-right rtl overflow-hidden">
       {/* Decorative Frame (Full Width, No Scroll) */}
-    <div className="relative w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] overflow-hidden mb-10">
+<div className="relative w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] overflow-hidden mb-10 hidden sm:block">
   <img
     src="/Frame.png"
     alt="decoration"
     className="w-full h-20 object-cover mt-1 mb-10"
   />
 </div>
+
+
+
 
 
       {/* Heading Image */}
